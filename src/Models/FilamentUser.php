@@ -75,6 +75,7 @@ class FilamentUser extends Authenticatable implements AccessControlUser, Filamen
         'expires_at',
         'two_factor_code',
         'two_factor_expires_at',
+        'school_id',
     ];
 
     /** {@inheritDoc} */
