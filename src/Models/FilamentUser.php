@@ -2,6 +2,7 @@
 
 namespace Chiiya\FilamentAccessControl\Models;
 
+use App\Models\School;
 use Carbon\Carbon;
 use Chiiya\FilamentAccessControl\Contracts\AccessControlUser;
 use Chiiya\FilamentAccessControl\Database\Factories\FilamentUserFactory;
@@ -17,6 +18,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
@@ -56,6 +58,7 @@ class FilamentUser extends Authenticatable implements AccessControlUser, Filamen
     use HasFactory;
     use HasRoles;
     use Notifiable;
+    use HasApiTokens;
 
     /** {@inheritDoc} */
     protected $table = 'filament_users';
@@ -192,5 +195,9 @@ class FilamentUser extends Authenticatable implements AccessControlUser, Filamen
     public function sendTwoFactorCodeNotification(): void
     {
         $this->notify(new TwoFactorCode);
+    }
+
+    public function school(): BelongsTo {
+        return $this->belongsTo(School::class);
     }
 }
