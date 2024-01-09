@@ -1,5 +1,5 @@
 {
-    "name": "chiiya/filament-access-control",
+    "name": "buromatthijs/filament-access-control",
     "description": "Admin user, role and permission management for Laravel Filament",
     "keywords": [
         "chiiya",
